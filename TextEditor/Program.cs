@@ -31,7 +31,29 @@ static void Open()
 
 static void Edit()
 {
-    
+ Console.Clear();
+ Console.WriteLine("Digite seu texto (ESC para sair): ");
+ string text = "";
+
+ do
+ {
+     text += Console.ReadLine();
+     text += Environment.NewLine;
+ }
+ while (Console.ReadKey().Key != ConsoleKey.Escape);
+ Console.Write(text);
+}
+
+static void Save(string text)
+{
+    Console.Clear();
+    Console.WriteLine("Qual caminho para salvar o arquivo?");
+    string path = Console.ReadLine();
+
+    using (var file = new StreamWriter(path))
+    {
+        file.Write(text);
+    }
 }
 
 Menu();
